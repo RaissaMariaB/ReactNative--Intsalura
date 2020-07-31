@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
 import Header from './components/Header';
-import Alura from '../assets/alura.jpg';
 import ImageComponent from './components/ImageComponent';
+
+import readPhotos from './api/feed'
 
 import {
   SafeAreaView,
@@ -13,13 +15,7 @@ const Home = () => {
   const [ photos, setPhotos ] = useState([])
 
   useEffect(() => {
-    const readPhotos = async() =>{
-      const photoHttp = await fetch('http://192.168.0.5:3030/feed')
-      const responsePhoto = await photoHttp.json()
-      setPhotos(responsePhoto)
-    }
-
-    readPhotos()
+      readPhotos(setPhotos)
   },[])
 
   return (
@@ -30,9 +26,10 @@ const Home = () => {
         data={photos}
         renderItem={({item}) =>
           <>
-          <Header userName={item.userName} />
+          <Header userName={item.userName} src={{ uri : item.userURL }}/>
           <ImageComponent
-          src={Alura}
+          src={item.url}
+          description={item.description}
           />
           </>
         }
