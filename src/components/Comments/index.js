@@ -6,17 +6,23 @@ import {
   FlatList,
   Image,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import { Style } from './style';
 
 const Comentarios = ({ comments }) => {
+  const [ commentState, setCommentState] = useState(comments);
+
+  const addComment = () =>{
+
+  };
 
   return(
     <>
       <FlatList
         keyExtractor={(item, index) => index.toString()}
-        data={comments}
+        data={commentState}
         renderItem={({ item }) => (
             <Text>{item.text}</Text>
           )
@@ -27,10 +33,12 @@ const Comentarios = ({ comments }) => {
           style={Style.input}
           placeholder="Deixe seu comentário..."
           />
-          <Image
-          style={Style.sendImg}
-          source={require('../../../assets/send.png')}
-          />
+          <TouchableOpacity onPress={() => addComment()}>
+            <Image
+            style={Style.sendImg}
+            source={require('../../../assets/send.png')}
+            />
+          </TouchableOpacity>
         </View>
     </>
   )
