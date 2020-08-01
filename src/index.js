@@ -30,6 +30,7 @@ const Home = () => {
           <ImageComponent
           src={item.url}
           description={item.description}
+          likes={item.likes}
           />
           </>
         }

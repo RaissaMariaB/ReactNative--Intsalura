@@ -10,7 +10,17 @@ export const ImageStyle = StyleSheet.create({
       height: Dimensions.get("screen").width,
     },
     like:{
-      width:30,
-      height:30,
+      width: 30,
+      height: 30,
+      margin: 10,
     },
+    viewLike:{
+      flexDirection: "row",
+      alignItems: "center",
+      marginLeft: 10,
+    },
+    viewComents:{
+      marginLeft: 10,
+      marginTop: 10,
+    }
   });
