@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 
-import { ImageStyle } from './style'
+import { ImageStyle } from './style';
+
+import { likeImg, likePhoto } from '../../api/likes';
 
 import {
   Image,
@@ -14,23 +16,12 @@ const ImageComponent = ({ src, description, likes }) => {
   const [ like, setLike ] = useState(false);
   const [ moreLikes, setMoreLikes ] = useState(likes)
 
-  const likeImg = ( like ) => {
-    if( like ){
-      return require("../../../assets/s2-checked.png");
-    }
-      return require("../../../assets/s2.png");
-  }
 
-  const likePhoto = () => {
-    let heart = moreLikes
-    if( like ){
-      heart --
-    } else{
-      heart ++
-    }
-    setMoreLikes(heart)
-    setLike(!like)
-  }
+const buttonLike = () => {
+  const [newStateLike, newStateMoreLikes ] = likePhoto( like, moreLikes)
+  setLike(newStateLike)
+  setMoreLikes(newStateMoreLikes)
+}
 
   return (
     <>
@@ -42,13 +33,13 @@ const ImageComponent = ({ src, description, likes }) => {
       <Text>{description}</Text>
     </View>
     <View style={ImageStyle.viewLike}>
-      <TouchableOpacity onPress={() => likePhoto()}>
+      <TouchableOpacity onPress={() => buttonLike()}>
       <Image
       source={likeImg(like)}
       style={ImageStyle.like}
       />
       </TouchableOpacity>
-      <Text>{moreLikes}</Text>
+      <Text>{moreLikes} curtidas</Text>
     </View>
     </>
   );
