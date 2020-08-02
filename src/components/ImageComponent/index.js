@@ -17,11 +17,11 @@ const ImageComponent = ({ src, description, likes }) => {
   const [ moreLikes, setMoreLikes ] = useState(likes)
 
 
-const buttonLike = () => {
-  const [newStateLike, newStateMoreLikes ] = likePhoto( like, moreLikes)
-  setLike(newStateLike)
-  setMoreLikes(newStateMoreLikes)
-}
+  const buttonLike = () => {
+    const [newStateLike, newStateMoreLikes ] = likePhoto( like, moreLikes)
+    setLike(newStateLike)
+    setMoreLikes(newStateMoreLikes)
+  }
 
   return (
     <>

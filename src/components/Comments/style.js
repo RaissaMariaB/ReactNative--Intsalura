@@ -17,4 +17,7 @@ export const Style = StyleSheet.create({
   input:{
     flex: 1,
   },
+  marginUserName:{
+    marginRight:8,
+  }
 });

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import {
   TextInput,
@@ -15,8 +15,18 @@ const Comentarios = ({ comments }) => {
   const [ commentState, setCommentState] = useState(comments);
 
   const addComment = () =>{
-
+    console.warn(inputContent);
+    inputField.clear();
+    const newComment = {
+      date: Date.now(),
+      text: inputContent,
+      userName: "RaissaMariaB"
+    };
+    setCommentState([...commentState, newComment]);
   };
+
+  let inputField;
+  let inputContent = ""
 
   return(
     <>
@@ -24,12 +34,19 @@ const Comentarios = ({ comments }) => {
         keyExtractor={(item, index) => index.toString()}
         data={commentState}
         renderItem={({ item }) => (
+          <View style={Style.inline}>
+            <Text style={Style.marginUserName}>
+              {item.userName}
+            </Text>
             <Text>{item.text}</Text>
+          </View>
           )
         }
         />
         <View style={Style.inline}>
           <TextInput
+          ref={textInput => inputField = textInput }
+          onChangeText={ (text) => inputContent = text }
           style={Style.input}
           placeholder="Deixe seu comentário..."
           />
@@ -41,7 +58,7 @@ const Comentarios = ({ comments }) => {
           </TouchableOpacity>
         </View>
     </>
-  )
-}
+  );
+};
 
-export default Comentarios
+export default Comentarios;
